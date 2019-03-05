@@ -8,18 +8,17 @@ title:  "Bloodhound install guide"
 This will be a quick tutorial on how to install Bloodhound on Kali Linux. lets get into it.  
 ### Update the system
 Get the latest and greatest.
-```
-apt-get update
-```
+> apt-get update
+
 For those of you who feel like living on the edge.
-```
-apt-get dist-upgrade
-```
+
+> apt-get dist-upgrade
+
 ### Change Neo4j password
 Launch Neo4j
-```
-neo4j console
-```
+
+> neo4j console
+
 Browse to the web interface at **http://localhost:7474**
 
 Login with the default credentials
@@ -30,9 +29,9 @@ Complete the password change in the browser
 
 ### Run BloodHounnd
 Open a new terminal
-```
-bloodhound
-```
+
+> bloodhound
+
 BloodHound is now running.
 
 ### Login
