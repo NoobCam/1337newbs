@@ -1,6 +1,6 @@
 ---
 layout: post
-title:  "sqlmap Tamper Scripts"
+title:  "Bloodhound install guide"
 ---
 ![](https://1337newbs.com/images/BloodHound-White-on-Red.png)
 # How to install BloodHound
