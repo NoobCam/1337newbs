@@ -2,7 +2,7 @@
 layout: post
 title:  "sqlmap Tamper Scripts"
 ---
-<center>![](https://1337newbs.com/images/BloodHound-White-on-Red.png)</center>
+![](https://1337newbs.com/images/BloodHound-White-on-Red.png)
 # How to install BloodHound
 
 This will be a quick tutorial on how to install Bloodhound on Kali Linux. lets get into it.  
