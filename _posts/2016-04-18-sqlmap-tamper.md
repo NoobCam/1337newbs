@@ -1,7 +1,9 @@
 ---
 layout: post
-title:  "sqlmap Tamper Scripts"
-categories: jekyll update
+title: "sqlmap tamper scripts"
+subtitle: "using different tamper scripts."
+date: YYYY-MM-DD HH:MM:SS
+background: '/PATH_TO_IMAGE'
 ---
 
 # sql map

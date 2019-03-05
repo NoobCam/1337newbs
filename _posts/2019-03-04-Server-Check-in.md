@@ -1,8 +1,11 @@
 ---
 layout: post
-title:  "Server Check In and Update"
-categories: jekyll update
+title: "Server Check In"
+subtitle: "SSH user list"
+date: YYYY-MM-DD HH:MM:SS
+background: '/PATH_TO_IMAGE'
 ---
+
 
 # Server Check In 
 ## SSH user list generation from log files on the blog

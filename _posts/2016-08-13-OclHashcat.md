@@ -1,7 +1,11 @@
 ---
 layout: post
-title:  "Loop OclHashcat through multiple rule files"
+title: "OclHashcat Loop"
+subtitle: "looping through multiple dictionaries and rules"
+date: YYYY-MM-DD HH:MM:SS
+background: '/PATH_TO_IMAGE'
 ---
+
 
 ## Loop OclHashcat through multiple rule files
 

@@ -1,7 +1,11 @@
 ---
 layout: post
-title:  "Bloodhound install guide"
+title: "BloodHound Installation"
+subtitle: "how to install Bloodhound."
+date: YYYY-MM-DD HH:MM:SS
+background: '/PATH_TO_IMAGE'
 ---
+
 ![](/assets/BloodHound-White-on-Red.png)
 # How to install BloodHound
 
