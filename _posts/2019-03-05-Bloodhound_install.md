@@ -3,7 +3,7 @@ layout: post
 title: "BloodHound Installation"
 subtitle: "how to install Bloodhound."
 date: 2019-03-05
-background: '/PATH_TO_IMAGE'
+background: '/assets/BloodHound-White-on-Red.png'
 ---
 
 ![](/assets/BloodHound-White-on-Red.png)
