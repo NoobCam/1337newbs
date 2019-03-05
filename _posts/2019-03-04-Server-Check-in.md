@@ -2,7 +2,7 @@
 layout: post
 title: "Server Check In"
 subtitle: "SSH user list"
-date: YYYY-MM-DD HH:MM:SS
+date: 2019-03-04
 background: '/PATH_TO_IMAGE'
 ---
 

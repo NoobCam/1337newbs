@@ -2,7 +2,7 @@
 layout: post
 title: "sqlmap tamper scripts"
 subtitle: "using different tamper scripts."
-date: YYYY-MM-DD HH:MM:SS
+date: 2016-04-18
 background: '/PATH_TO_IMAGE'
 ---
 

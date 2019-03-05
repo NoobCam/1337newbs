@@ -2,7 +2,7 @@
 layout: post
 title: "msfvenom walkthrough"
 subtitle: "how-to create a payload"
-date: YYYY-MM-DD HH:MM:SS
+date: 2016-03-22
 background: '/PATH_TO_IMAGE'
 ---
 ![alt text](http://www.interpretermag.com/wp-content/uploads/2014/03/hacker-grenade.jpg "Logo Title Text 1")

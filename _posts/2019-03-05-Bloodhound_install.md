@@ -2,7 +2,7 @@
 layout: post
 title: "BloodHound Installation"
 subtitle: "how to install Bloodhound."
-date: YYYY-MM-DD HH:MM:SS
+date: 2019-03-05
 background: '/PATH_TO_IMAGE'
 ---
 

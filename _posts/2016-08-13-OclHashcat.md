@@ -2,7 +2,7 @@
 layout: post
 title: "OclHashcat Loop"
 subtitle: "looping through multiple dictionaries and rules"
-date: YYYY-MM-DD HH:MM:SS
+date: 2016-08-13
 background: '/PATH_TO_IMAGE'
 ---
 
