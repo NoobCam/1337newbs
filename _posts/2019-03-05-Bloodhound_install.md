@@ -2,7 +2,7 @@
 layout: post
 title:  "Bloodhound install guide"
 ---
-![](/assets/BloodHound-White-on-Red.png)
+<center>![](/assets/BloodHound-White-on-Red.png)</center>
 # How to install BloodHound
 
 This will be a quick tutorial on how to install Bloodhound on Kali Linux. lets get into it.  
