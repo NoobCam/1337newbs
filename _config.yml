@@ -15,9 +15,10 @@
 # in the templates via {{ site.myvariable }}.
 title: 1337Newbs
 #email: 
+author: netsecnoob
 description: Security Blog
-baseurl: "" # the subpath of your site, e.g. /blog
-url: "" # the base hostname & protocol for your site, e.g. http://example.com
+baseurl: "/" # the subpath of your site, e.g. /blog
+url: "https://1337newbs.com" # the base hostname & protocol for your site, e.g. http://example.com
 twitter_username: netsecnoob
 github_username:  noobcam
 
