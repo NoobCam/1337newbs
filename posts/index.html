@@ -27,7 +27,7 @@ background: '/assets/hacker_index.jpg'
 
 
 
-        {% endfor %}
+{% endfor %}
 
 <!-- Pager -->
 {% if paginator.total_pages > 1 %}
@@ -40,7 +40,7 @@ background: '/assets/hacker_index.jpg'
   {% endif %}
 
   {% if paginator.next_page %}
-  <a class="btn btn-primary float-right" href="{{ paginator.next_page_path | prepend: site.baseurl | replace: '//', '/' }}">Older<span>
+  <a class="btn btn-primary float-right" href="{{ paginator.next_page_path | prepend: site.baseurl | replace: '//', '/' }}">Older<span
       class="d-none d-md-inline"> Posts</span> &rarr;</a>
   {% endif %}
 
