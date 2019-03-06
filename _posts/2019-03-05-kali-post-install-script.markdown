@@ -6,13 +6,6 @@ date: 2019-03-05
 background: '/PATH_TO_IMAGE'
 ---
 
----
-layout: post
-title: "Kali extra tools install script"
-subtitle: "Adding extra stuff to kali"
-date: 2019-03-05
-background: '/PATH_TO_IMAGE'
----
 
 ### Adding extra stuff to Kali
 
