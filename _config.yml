@@ -55,5 +55,5 @@ kramdown:
 #   - vendor/gems/
 #   - vendor/ruby/
 #
-paginate: 5
+paginate: 25
 paginate_path: "/posts/page:num/"
