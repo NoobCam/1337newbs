@@ -27,6 +27,7 @@ markdown: kramdown
 theme: jekyll-theme-clean-blog
 plugins:
   - jekyll-feed
+  - jekyll-paginate  
 kramdown:
   # https://github.com/jekyll/jekyll/pull/4090
   syntax_highlighter: rouge
@@ -53,5 +54,6 @@ kramdown:
 #   - vendor/cache/
 #   - vendor/gems/
 #   - vendor/ruby/
+#
 paginate: 5
 paginate_path: "/posts/page:num/"
