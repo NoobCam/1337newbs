@@ -77,6 +77,14 @@
   .vg { color: #000000 } /* Name.Variable.Global */
   .vi { color: #000000 } /* Name.Variable.Instance */
   .il { color: #0000cf; font-weight: bold } /* Literal.Number.Integer.Long */
+  
+  .lineno { 
+  -webkit-touch-callout: none;
+  -webkit-user-select: none;
+  -khtml-user-select: none;
+  -moz-user-select: none;
+  -ms-user-select: none;
+  user-select: none;
 
   }
 
