@@ -21,7 +21,7 @@ but I typically don't need everything it installs.
 
 I am hopeing to maintain a shell script that does that for my after I spin up a new instance of kali. I will keep it updated and add a git repo for it soon.
 
-```
+```bash
 !#/bin/bash
 ## Go lang install and add /home/go/bin to path
 apt-get install -y golang
