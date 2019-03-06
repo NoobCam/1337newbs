@@ -3,6 +3,8 @@ layout: page
 title: Posts
 background: '/assets/hacker_index.jpg'
 ---
+
+  {% for post in paginator.posts %}
         <!-- Home Post List -->
 	{% for post in site.posts limit : 2 %}
         <center><article class="post-preview">
