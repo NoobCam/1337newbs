@@ -21,7 +21,8 @@ background: '/PATH_TO_IMAGE'
 ```
 {
 	"jekyll_posts_path": "C:\\Users\\username\\site\\_posts",
-	"jekyll_uploads_path": "C:\\Users\\username\\site\\assets"
+	"jekyll_uploads_path": "C:\\Users\\username\\site\\assets",
+	"jekyll_drafts_path": "C:\\Users\\username\\site\\_drafts"
 }
 ```
 ### Using the jekyll plugin
